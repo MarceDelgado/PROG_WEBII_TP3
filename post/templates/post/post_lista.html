@@ -1,0 +1,26 @@
+{% block content %}
+<h2>Publicaciones</h2>
+
+{% if posts %}
+    <div class="post-lista">
+        {% for post in posts %}
+        <div class="post-item">
+            <h3>
+                <a href="{% url 'post_detalles' post.id %}">{{ post.titulo }}</a>
+            </h3>
+            <p class="post-detalles">{{ post.detalles }} - <em>{{ post.fechaDepublicacion }}</em></p>
+            <div class="post-actions">
+                <a href="{% url 'post_editar' post.id %}" class="btn btn-warning">Editar</a>
+                <a href="{% url 'post_eliminar' post.id %}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar esta publicación?');">Eliminar</a> 
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No hay publicaciones disponibles.</p>
+{% endif %}
+
+{% endblock %}
+
+
+
